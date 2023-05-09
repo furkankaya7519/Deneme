@@ -1,11 +1,35 @@
+from pymongo import MongoClient
+from bson import Code
 
-print("Merhaba Furkan..")
+client = MongoClient("mongodb+srv://softwareunopro:Unopro0101@cluster0.sys4qgi.mongodb.net/?retryWrites=true&w=majority")
+db = client['upeyesData']
+collection = db['measurements']
 
-print("Hello Furkan..")
+def Deneme1():
+    
+    my_code = Code('for i in range(10):\n    print("Furkan")', {})
+    my_doc = {'version': 1, 'code': my_code}
+    collection.insert_one(my_doc)
 
-print("How was going brooo???")
+def RunCode():
+    document = collection.find_one({"codeReference": "true"})
+    if document:
+        which_version = document['WhichVersion']
+        print(which_version)
+    else:
+        print("Belge bulunamadı.")
+    
+    document = collection.find_one({"version":which_version})
+    exec(document['code'])
 
 
-print("Naberrrrrrr")
+
+
+
+#Deneme1()
+
+RunCode()
+
+
 
 
