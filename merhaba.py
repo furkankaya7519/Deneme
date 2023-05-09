@@ -1,6 +1,6 @@
 
 print("Merhaba Furkan..")
 
-input("Çıkmak için herhangi bir tuşa basınız...")
+input("Press enter to exit in python code.......")
 
 
